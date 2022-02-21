@@ -1,0 +1,53 @@
+CREATE TABLE  model_Entity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    status TEXT NOT NULL,
+    species TEXT NOT NULL,
+    type INTEGER NOT NULL,
+    gender TEXT NOT NULL,
+    image TEXT NOT NULL,
+    url TEXT NOT NULL,
+    created TEXT NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM model_Entity;
+
+insertModel:
+INSERT OR REPLACE
+INTO model_Entity (
+    id,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    image,
+    url,
+    created
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+searchModels:
+SELECT * FROM model_Entity
+WHERE name LIKE ('%' || :query || '%')
+OR species LIKE ('%' || :query || '%')
+-- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
+LIMIT :pageSize
+OFFSET :offset;
+
+getListOfModels:
+SELECT * FROM model_Entity
+-- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
+LIMIT :pageSize
+OFFSET :offset;
+
+getModelById:
+SELECT * FROM model_Entity
+WHERE id = :id;
+
+
+
+
+
+
