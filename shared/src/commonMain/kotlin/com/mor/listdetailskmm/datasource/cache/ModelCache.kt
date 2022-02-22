@@ -8,11 +8,10 @@ interface ModelCache {
     fun insert(Models: List<Model>)
 
     fun search(
-//        query: String,
+        query: String,
         page: Int): List<Model>
 
     fun getAll(page: Int): List<Model>
 
-    @Throws(NullPointerException::class)
     fun get(modelId: Int): Model?
 }

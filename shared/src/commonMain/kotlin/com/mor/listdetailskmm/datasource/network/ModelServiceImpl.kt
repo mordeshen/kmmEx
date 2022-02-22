@@ -8,7 +8,7 @@ class ModelServiceImpl (
     private val httpClient: HttpClient,
     private val baseUrl: String,
     ):ModelService{
-    override suspend fun search(page: Int): List<Model> {
+    override suspend fun search(page: Int, query: String): List<Model> {
         return httpClient.get<ModelSearchResponse>{
             url("$baseUrl?page=$page")
         }.results.toModelList()
@@ -22,5 +22,6 @@ class ModelServiceImpl (
 
     companion object{
         const val BASE_URL = "https://rickandmortyapi.com/api/character"
+        const val MODEL_PAGINATION_PAGE_SIZE = 30
     }
 }

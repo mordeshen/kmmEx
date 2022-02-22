@@ -1,6 +1,8 @@
 package com.mor.listdetailskmm.android.presentation.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,6 +13,8 @@ import com.mor.listdetailskmm.android.presentation.model_details.ModelDetailsVie
 import com.mor.listdetailskmm.android.presentation.model_list.ModelListScreen
 import com.mor.listdetailskmm.android.presentation.model_list.ModelListViewModel
 
+@ExperimentalComposeUiApi
+@ExperimentalMaterialApi
 @Composable
 fun Navigation(){
     val navController = rememberNavController()
@@ -20,7 +24,8 @@ fun Navigation(){
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
             val viewModel: ModelListViewModel = viewModel("ModelListViewModel", factory)
             ModelListScreen(
-                onSelectModel = { modelId ->
+                state = viewModel.state.value,
+                onClickModelListItem = { modelId ->
                     navController.navigate("${Screen.ModelDetail.route}/$modelId")
                 }
             )

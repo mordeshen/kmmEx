@@ -5,7 +5,7 @@ import com.mor.listdetailskmm.domain.model.Model
 interface ModelService {
     suspend fun search(
         page: Int,
-//        query: String,
+        query: String,
     ): List<Model>
 
     suspend fun get(

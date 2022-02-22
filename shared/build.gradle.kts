@@ -50,12 +50,12 @@ kotlin {
 //                implementation("junit:junit:4.13.2")
 //            }
 //        }
-//        val iosX64Main by getting {
-//            dependencies {
-//                implementation(Ktor.ios)
-//                implementation(SQLDelight.nativeDriver)
-//            }
-//        }
+        val iosX64Main by getting {
+            dependencies {
+                implementation(Ktor.ios)
+                implementation(SQLDelight.nativeDriver)
+            }
+        }
         val iosArm64Main by getting{
             dependencies {
                 implementation(Ktor.ios)
@@ -65,7 +65,7 @@ kotlin {
         //val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)
-//            iosX64Main.dependsOn(this)
+            iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             //iosSimulatorArm64Main.dependsOn(this)
         }

@@ -5,6 +5,9 @@ CREATE TABLE  model_Entity(
     species TEXT NOT NULL,
     type INTEGER NOT NULL,
     gender TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    location TEXT NOT NULL,
+    episode TEXT NOT NULL,
     image TEXT NOT NULL,
     url TEXT NOT NULL,
     created TEXT NOT NULL
@@ -23,14 +26,18 @@ INTO model_Entity (
     species,
     type,
     gender,
+    origin,
+    location,
+    episode,
     image,
     url,
     created
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?);
 
 searchModels:
 SELECT * FROM model_Entity
 WHERE name LIKE ('%' || :query || '%')
+OR id LIKE ('%' || :query || '%')
 OR species LIKE ('%' || :query || '%')
 -- ORDER BY date_updated DESC -- Ordering can cause duplicates in the results because they all have identical timestamps
 LIMIT :pageSize
